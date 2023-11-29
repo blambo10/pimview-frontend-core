@@ -9,12 +9,12 @@ COPY package-lock.json ./
 
 #TODO issue with react try running commented with explicit react dnd install and see if error can be reproduced. 
 
-RUN npm install
-RUN npm install react-scripts url
-RUN npm install url
-RUN npm i buffer process
-RUN npm install @mui/material
-RUN npm install @emotion/styled
+RUN yarn install
+RUN yarn add react-scripts url
+RUN yarn add url
+RUN yarn add buffer process
+RUN yarn add @mui/material
+RUN yarn add @emotion/styled
 
 COPY . ./
 
