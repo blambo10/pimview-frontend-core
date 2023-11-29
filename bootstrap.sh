@@ -11,4 +11,4 @@ fi
 
 env | grep "REACT_APP" > .env
 
-npm start
+yarn start
