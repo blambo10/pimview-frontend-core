@@ -15,7 +15,7 @@ RUN yarn add url
 RUN yarn add buffer process
 RUN yarn add @mui/material
 RUN yarn add @emotion/styled
-RUN yarn add -D webpack webpack-cli html-webpack-plugin webpack-dev-server babel-loader css-loader
+RUN yarn add webpack webpack-cli html-webpack-plugin webpack-dev-server babel-loader css-loader
 
 COPY . ./
 
