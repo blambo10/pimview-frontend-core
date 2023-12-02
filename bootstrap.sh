@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/sh
 touch .env
 
 if [ $# -ne 0 ]; then
@@ -7,8 +7,18 @@ if [ $# -ne 0 ]; then
   do
     export "$var"
   done
+else
+  echo "no args found"
 fi
 
-env | grep "REACT_APP" > .env
+if env | grep "REACT_APP" > .env ; then
+  echo "react .env set"
+else
+  echo "unable to set .env"
+fi
 
-yarn start
+# if [ $NODE_ENV -eq "production" ]; then
+#   yarn build
+# else
+#   yarn start
+# fi

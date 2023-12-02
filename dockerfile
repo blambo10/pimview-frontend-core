@@ -1,24 +1,16 @@
-FROM node:latest
+FROM node:latest as build
+
 WORKDIR /app
-
-ENV PATH /app/node_modules/.bin:$PATH
-
-# install app dependencies
-COPY package.json ./
-COPY package-lock.json ./
-
-#TODO issue with react try running commented with explicit react dnd install and see if error can be reproduced. 
-
-RUN yarn install
-RUN yarn add react-scripts url
-RUN yarn add url
-RUN yarn add buffer process
-RUN yarn add @mui/material
-RUN yarn add @emotion/styled
-RUN yarn add webpack webpack-cli html-webpack-plugin webpack-dev-server babel-loader css-loader
-
 COPY . ./
 
-RUN chmod +x ./bootstrap.sh
+RUN yarn install --frozen-lockfile
 
-CMD ["./bootstrap.sh"]
+RUN chmod +x ./bootstrap.sh
+RUN /app/bootstrap.sh
+
+RUN yarn build
+
+FROM nginx:1.23.1-alpine
+EXPOSE 80
+COPY ./docker/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist /usr/share/nginx/html
