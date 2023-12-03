@@ -93,7 +93,7 @@ function App() {
 
   function setApp2() {
     setSystem({
-      url: 'http://localhost:3001/remoteEntry.js',
+      url: 'http://' + window.location.host + ':3001/remoteEntry.js',
       scope: 'app2',
       module: './Widget',
     });
