@@ -2,7 +2,7 @@ import React from 'react';
 import WallPaper from './components/Layout/Wallpaper.js'
 // import { styled, useTheme } from '@mui/material/styles';
 
-const devicesUrl = process.env.REACT_APP_PIMVIEW_DEVICE_URL;
+// const devicesUrl = process.env.REACT_APP_PIMVIEW_DEVICE_URL;
 
 function loadComponent(scope, module) {
   return async () => {
@@ -93,8 +93,11 @@ function App() {
   
 
   function setApp2() {
+
+    // console.log(devicesUrl)
     setSystem({
-      url: 'http://' + devicesUrl + ':3001/remoteEntry.js',
+      // url: 'http://' + devicesUrl + ':3001/remoteEntry.js',
+      url: 'http://k8s.thelabshack.com:3001/remoteEntry.js',
       scope: 'app2',
       module: './Widget',
     });
