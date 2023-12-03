@@ -99,7 +99,7 @@ function App() {
     });
   }
 
-  //testing github actions
+  //testing github action
 
   function setApp3() {
     setSystem({
