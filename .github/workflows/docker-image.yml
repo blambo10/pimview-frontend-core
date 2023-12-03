@@ -35,7 +35,8 @@ jobs:
           file: ./Dockerfile
           push: true
           # push: ${{ github.event.base_ref =='refs/heads/main' && github.ref_type == 'tag' && !startsWith(github.ref, 'refs/tags/v0.')}}
-          tags: ${{ secrets.DOCKER_USERNAME }}/${{ env.IMG_NAME }}:latest
+          # tags: ${{ secrets.DOCKER_USERNAME }}/${{ env.IMG_NAME }}:latest
+          tags: ${{ env.IMG_NAME }}:latest
 
     # steps:
     #   - name: Checkout
