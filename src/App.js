@@ -97,7 +97,8 @@ function App() {
     // console.log(devicesUrl)
     setSystem({
       // url: 'http://' + devicesUrl + ':3001/remoteEntry.js',
-      url: 'http://k8s.thelabshack.com:3001/remoteEntry.js',
+      // url: 'http://k8s.thelabshack.com:3001/remoteEntry.js',
+      url: 'http://localhost:3001/remoteEntry.js',
       scope: 'app2',
       module: './Widget',
     });
