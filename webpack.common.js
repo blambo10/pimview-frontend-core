@@ -1,28 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack').container.ModuleFederationPlugin;
-const path = require('path');
-const webpack = require('webpack');
-const dotenv = require('dotenv');
 
-// call dotenv and it will return an Object with a parsed key 
-const env = dotenv.config().parsed;
-
-// reduce it to a nice object, the same as before
-const envKeys = Object.keys(env).reduce((prev, next) => {
-prev[`process.env.${next}`] = JSON.stringify(env[next]);
-    return prev;
-}, {});
 
 module.exports = {
-  entry: './src/index',
-  mode: 'development',
+  entry: './src/index.js',
   target: 'web',
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist'),
-    },
-    port: 3000,
-  },
   output: {
     publicPath: 'auto',
   },
@@ -39,7 +21,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.DefinePlugin(envKeys),
     new ModuleFederationPlugin({
       name: 'pimview',
       // adds react as shared module

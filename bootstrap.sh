@@ -11,14 +11,5 @@ else
   echo "no args found"
 fi
 
-if env | grep "REACT_APP" > .env ; then
-  echo "react .env set"
-else
-  echo "unable to set .env"
-fi
-
-# if [ $NODE_ENV -eq "production" ]; then
-#   yarn build
-# else
-#   yarn start
-# fi
+sed -i "s/{{DEVICE_URL}}/$REACT_APP_PIMVIEW_DEVICE_URL/g" /usr/share/nginx/html/main.js
+sed -i "s/{{DEVICE_URL}}/$REACT_APP_PIMVIEW_DEVICE_URL/g" /usr/share/nginx/html/0.js

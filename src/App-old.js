@@ -1,15 +1,40 @@
 import React from 'react';
 import WallPaper from './components/Layout/Wallpaper.js'
-// import { styled, useTheme } from '@mui/material/styles';
 
-let devicesUrl = ""
+//TODO: finish up the bootstrap find and replace for production which should replace the place holders in main.js,
+//      then start testing.
 
-try {
-  devicesUrl = process.env.REACT_APP_PIMVIEW_DEVICE_URL;
-} catch {
-  devicesUrl = "{{DEVICE_URL}}";
-}
+//TODO: figure out why the 
+//Error: Container initialization failed as it has already been initialized with a different share scope
+// is happening
 
+// var devicesUrl;
+
+// try{
+//   devicesUrl = process.env.REACT_APP_PIMVIEW_DEVICE_URL;
+// } catch {
+//   devicesUrl = "{{DEVICE_URL}}"
+// }
+
+// const devicesUrl = process.env.REACT_APP_PIMVIEW_DEVICE_URL;
+
+// console.log("url:" + devicesUrl)
+
+// function loadComponent(scope, module) {
+//   return async () => {
+    
+//       // Initializes the share scope. This fills it with known provided modules from this build and all remotes
+//       await __webpack_init_sharing__('default');
+//       const container = window[scope]; // or get the container somewhere else
+//       // Initialize the container, it may provide shared modules
+//       await container.init(__webpack_share_scopes__.default);
+//       console.log(module)
+//       const factory = await window[scope].get(module);
+//       const Module = factory();
+//       return Module;
+    
+//   };
+// }
 
 function loadComponent(scope, module) {
   return async () => {
@@ -18,12 +43,13 @@ function loadComponent(scope, module) {
     const container = window[scope]; // or get the container somewhere else
     // Initialize the container, it may provide shared modules
     await container.init(__webpack_share_scopes__.default);
-    console.log(module)
     const factory = await window[scope].get(module);
     const Module = factory();
     return Module;
   };
 }
+
+
 
 const urlCache = new Set();
 const useDynamicScript = url => {
@@ -100,11 +126,10 @@ function App() {
   
 
   function setApp2() {
-
-    // console.log(devicesUrl)
-    setSystem({
       // url: 'http://' + devicesUrl + ':3001/remoteEntry.js',
       // url: 'http://k8s.thelabshack.com:3001/remoteEntry.js',
+    // console.log(devicesUrl)
+    setSystem({
       url: 'http://localhost:3001/remoteEntry.js',
       scope: 'app2',
       module: './Widget',
@@ -116,13 +141,14 @@ function App() {
       url: 'http://localhost:3003/remoteEntry.js',
       scope: 'app3',
       module: './Widget',
-      
     });
   }
-
-  React.useEffect(() => setApp2(), []);
+//TODO: debug why new one core doesnt work and old one does
+  
 
   const { Component: FederatedComponent, errorLoading } = useFederatedComponent(url, scope, module);
+
+  React.useEffect(() => setApp2(), []);
 
   return (
     <div
