@@ -101,11 +101,10 @@ function App() {
 
   function setApp2() {
 
-    // console.log(devicesUrl)
+    let firstDeviceURL = 'http://' + devicesUrl + ':3001/remoteEntry.js'
+    console.log(firstDeviceURL)
     setSystem({
-      // url: 'http://' + devicesUrl + ':3001/remoteEntry.js',
-      // url: 'http://k8s.thelabshack.com:3001/remoteEntry.js',
-      url: 'http://localhost:3001/remoteEntry.js',
+      url: firstDeviceURL,
       scope: 'app2',
       module: './Widget',
     });
