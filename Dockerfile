@@ -12,6 +12,6 @@ COPY ./docker/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/dist /usr/share/nginx/html
 COPY bootstrap.sh /usr/share/nginx/html/bootstrap.sh
 
-RUN chmod +x /usr/share/nginx/html/bootstrap.sh
+# RUN chmod +x /usr/share/nginx/html/bootstrap.sh
 # RUN /usr/share/nginx/html/bootstrap.sh
-# CMD [ "/bin/sh", "-c", "/usr/share/nginx/html/bootstrap.sh && nginx -g \"daemon off;\"" ]
+CMD [ "/bin/sh", "-c", "/usr/share/nginx/html/bootstrap.sh && nginx -g \"daemon off;\"" ]
